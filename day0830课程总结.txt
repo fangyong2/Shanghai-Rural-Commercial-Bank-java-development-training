@@ -1,0 +1,301 @@
+java开发工具
+IntelliJ IDEA 2020.3.2 (Ultimate Edition)
+
+java开发工具下载地址
+https://www.jetbrains.com/idea/download/#section=mac
+
+jdk版本
+java version "11.0.12"
+
+jdk版本下载地址
+https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+
+maven代码构建工具
+https://mirrors.bfsu.edu.cn/apache/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.zip
+
+tomcat window版
+https://downloads.apache.org/tomcat/tomcat-9/v9.0.52/bin/apache-tomcat-9.0.52-windows-x64.zip
+
+tomcat mac版
+https://downloads.apache.org/tomcat/tomcat-9/v9.0.52/bin/apache-tomcat-9.0.52.zip
+
+资料下载
+https://github.com/fangyong2/Shanghai-Rural-Commercial-Bank-java-development-training
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| 知识点       	  																						  |掌握程度	   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :变量  字符串 if表达式 switch表达式 函数定义 数组 For while dowhile循环 break continue  Exception         |熟练		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :集合 collection (list set), map  		 							 							  |熟练		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :类  继承 封装 多态 抽象类 接口	修饰符										 						  |熟练		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :JDBC  7个步骤	 Connection	Statement ResultSet  单例设计模式				 							  |熟练		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :IO  Writer Reader											 							  		  |了解		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :线程  extends Thread implements Runnable											 				  |了解		   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :maven											 							  		  			  |掌握	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :JDBC  7个步骤	 Connection	Statement ResultSet  单例设计模式				 							  |熟练		   |
++---------------------------------------------------------------------------------------------------------+------------+
++----------------------------------------------------+
+| SQL : DDL DML DCL                                 |
++----------------------------------------------------+
+| JDBC : Connection Statement ResultSet     |
++----------------------------------------------------+
+
+create table a(aid int primary key auto_increment,aname varchar(20));
+create table b(bid int primary key auto_increment,bname varchar(20),aid int );
+alter table b add foreign key fk_aid(aid) references a(aid);
+
+
+a aid aname
+
+b bid bname aid
+
+aid bid aname bname 
+
+select a.aid,a.aname,b.bid,b.bname left join b on a.aid=b.aid
+
++----------------------------------------------------+
+| 远程MYSQL主机配置信息                             |
++----------------------------------------------------+
+|主机名或IP地址 ｜121.37.170.216                       |
++-------------+--------------------------------------+
+|端口           ｜3306                                 |
++-------------+--------------------------------------+
+|用户名          ｜root                                 |
++-------------+--------------------------------------+
+|密码           ｜fy123456                             |
++-------------+--------------------------------------+
+
+DDL（data definition language）数据库定义语言：
+其实就是我们在创建表的时候用到的一些sql，比如说：CREATE、ALTER、DROP等。DDL主要是用在定义或改变表的结构，数据类型，表之间的链接和约束等初始化工作上
+
+CREATE TABLE 表名称
+(
+列名称1 数据类型,
+列名称2 数据类型,
+列名称3 数据类型,
+....
+)
+
+DROP TABLE 表名称
+
+
+use hsbc;
+drop table tbl_dvd_姓名;
+create table tbl_dvd_姓名
+(
+id int primary key auto_increment,
+name varchar(20),
+state int,
+date int,
+count int
+);
+
+
+DML（data manipulation language）数据操纵语言：
+就是我们最经常用到的 SELECT、UPDATE、INSERT、DELETE。 主要用来对数据库的数据进行一些操作。
+
+SELECT 列名称 FROM 表名称
+UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+DELETE FROM 表名称 WHERE 列名称 = 值
+
+添加
+use hsbc;
+INSERT INTO tbl_dvd_fy (name, state,date,count) VALUES ("方勇", 1,0,1);
+
+修改
+UPDATE tbl_dvd_fy SET count = 100 WHERE name = "方勇";
+
+删除
+DELETE FROM tbl_dvd_fy WHERE name = "Ivy";
+
+查询
+use hsbc;
+SELECT * FROM tbl_dvd_fy;
+
+分页
+SELECT * FROM tbl_dvd_fy limit 2;
+
+
+
+
+DCL（Data Control Language）数据库控制语言：
+是用来设置或更改数据库用户或角色权限的语句，包括（grant,deny,revoke等）语句。这个比较少用到。
+1.COMMIT - save work done 提交 
+2.SAVEPOINT - identify a point in a transaction to which you can later roll back 保存点 
+3.ROLLBACK - restore database to original since the last COMMIT   回滚 
+
+oracle
+String url="jdbc:oracle:thin:@127.0.0.1:1521:orcl";
+		  String user="scott";
+		  String password="tiger";
+		  conn = DriverManager.getConnection(url, user, password);// 连接数据库
+
+JDBC操作数据库的七个基本步骤
+1、使用反射方式加载驱动器
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+2、创建连接数据库对象
+String url = "jdbc:mysql://localhost[127.0.0.1]:3306/表名?characterEncoding=utf-8"
+String userName = "用户名"；
+String passWord = "密码"；
+Connection conn = DriverManage.getConnection(url,userName,PassWord)；
+
+3、创建操作数据库对象
+Statement stat = conn.createStatement() || conn.prepareStatement();
+
+4、创建Sql语句
+String sql = "select * from 表名 where 【约束条件】";
+String sql = "insert into 表名 列名 = 值 where 【约束条件】";
+String sql = "delete from 表名 where 【约束条件】";
+String sql = "update 表名 set 列名 = 值 where 【约束条件】"
+
+5、执行Sql语句，并创建结果集
+
+ResultSet rs = stat.executeQuery() || stat.executeUpdate();
+
+6、操作结果集
+while(rs.next()){
+    rs.getString() || rs.getInt() || rs.getDouble() || rs.getFloat || rs.getDate()
+}
+
+7、释放资源
+//先创建的后释放
+if(rs != null) rs.close();          //释放结果集对象
+if(stat != null) stat.close();      //释放操作数据库对象
+if(conn != null) conn.close();      //释放连接数据库对象
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :maven											 							  		  			  |掌握	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+window配置Apache-maven
+	编辑 c:\java\apache-maven-3.8.2\conf\settings.xml
+	<mirror>
+	<id>AliMaven</id>
+	<mirrorOf>central</mirrorOf>
+	<name>aliyun Mirror.</name>
+	<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+	</mirror> 
+
+mac配置Apache-maven
+	编辑 /Users/用户目录/java/apache-maven-3.8.2/conf/settings.xml
+	<mirror>
+	<id>AliMaven</id>
+	<mirrorOf>central</mirrorOf>
+	<name>aliyun Mirror.</name>
+	<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+	</mirror> 	
+
+
+mysql依赖的jdbc驱动包
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.20</version>
+</dependency>
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :Servlet											 							  		  			  |掌握	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
+
+1、pom.xml
+<!--导入servlet 包-->
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>4.0.1</version>
+  <scope>provided</scope>
+</dependency>
+
+2、页面请求逻辑
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class ServletDemo extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doGet(req, resp);
+        resp.getWriter().println("doGet..........");
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doPut(req, resp);
+        resp.getWriter().println("doPut..........");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doDelete(req, resp);
+        resp.getWriter().println("doDelete..........");
+    }
+}
+
+3、配置web.xml
+<servlet>
+	<servlet-name>ServletDemo</servlet-name>
+	<servlet-class>ServletDemo</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>ServletDemo</servlet-name>
+	<url-pattern>/dvd</url-pattern>
+</servlet-mapping>
+
+4、页面访问
+http://localhost:8080/myservlet/hello
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :fastjson											 							  		  		  |了解	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.75</version>
+</dependency>
+
+
+import com.alibaba.fastjson.JSON;
+
+JSON.toJSON(list)
+
+
+CSS 元素选择器
+p {
+  text-align: center;
+  color: red;
+}
+
+CSS id 选择器
+#para1 {
+  text-align: center;
+  color: red;
+}
+
+CSS 类选择器
+.center {
+  text-align: center;
+  color: red;
+}
+
+
+CSS 通用选择器
+* {
+  text-align: center;
+  color: blue;
+}
+

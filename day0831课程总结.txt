@@ -1,0 +1,226 @@
+java开发工具
+IntelliJ IDEA 2020.3.2 (Ultimate Edition)
+
+java开发工具下载地址
+https://www.jetbrains.com/idea/download/#section=mac
+
+jdk版本
+java version "11.0.12"
+
+jdk版本下载地址
+https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+
+maven代码构建工具
+https://mirrors.bfsu.edu.cn/apache/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.zip
+
+tomcat window版
+https://downloads.apache.org/tomcat/tomcat-9/v9.0.52/bin/apache-tomcat-9.0.52-windows-x64.zip
+
+tomcat mac版
+https://downloads.apache.org/tomcat/tomcat-9/v9.0.52/bin/apache-tomcat-9.0.52.zip
+
+vue element ui
+https://element.eleme.cn/#/zh-CN/component/layout
+
+资料下载
+https://github.com/fangyong2/Shanghai-Rural-Commercial-Bank-java-development-training
+
++---------------------------------------------------------------------------------------------------------+------------+
+| 知识点       	  																						                                              |掌握程度	     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :maven                                                                                             |熟练         |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :变量  字符串 if表达式 switch表达式 函数定义 数组 For while dowhile循环 break continue  Exception         |熟练		     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :类  继承 封装 多态 抽象类 接口	修饰符										 						 |熟练		     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :集合 collection (list set), map                                                                    |熟练         |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :JDBC  7个步骤	 Connection	Statement ResultSet  单例设计模式				 							  熟练		     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :IO  Writer Reader											 							  		|了解		     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :线程  extends Thread implements Runnable											 				  |了解		     |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :servlet										 							  		  			      |熟练	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :H5                                                                                                |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :CSS                                                                                               |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :JS                                                                                                |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+| java :VUE                                                                                               |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :Servlet											 							  		  			  |掌握	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
+
+1、pom.xml
+<!--导入servlet 包-->
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>4.0.1</version>
+  <scope>provided</scope>
+</dependency>
+
+2、页面请求逻辑
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class ServletDemo extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doGet(req, resp);
+        resp.getWriter().println("doGet..........");
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doPut(req, resp);
+        resp.getWriter().println("doPut..........");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doDelete(req, resp);
+        resp.getWriter().println("doDelete..........");
+    }
+}
+
+3、配置web.xml
+<servlet>
+	<servlet-name>ServletDemo</servlet-name>
+	<servlet-class>ServletDemo</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>ServletDemo</servlet-name>
+	<url-pattern>/dvd</url-pattern>
+</servlet-mapping>
+
+4、页面访问
+http://localhost:8080/myservlet/hello
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :fastjson											 							  		  		  |了解	   	   |
++---------------------------------------------------------------------------------------------------------+------------+
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.75</version>
+</dependency>
+
+
+import com.alibaba.fastjson.JSON;
+
+JSON.toJSON(list)
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :H5                                                                                                |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :CSS                                                                                               |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+
+CSS 元素选择器
+p {
+  text-align: center;
+  color: red;
+}
+
+CSS id 选择器
+#para1 {
+  text-align: center;
+  color: red;
+}
+
+CSS 类选择器
+.center {
+  text-align: center;
+  color: red;
+}
+
+
+CSS 通用选择器
+* {
+  text-align: center;
+  color: blue;
+}
+
+
++---------------------------------------------------------------------------------------------------------+------------+
+| java :js                                                                                               |深入了解      |
++---------------------------------------------------------------------------------------------------------+------------+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
++-------------------------------------------------------+
+|RESTful风格接口											|
++-------------------------------------------------------+
+| URL											|Method +
++-----------------------------------------------+-------+
+| http://121.37.170.216:8080/dvd         		|GET	|
++-----------------------------------------------+-------+
+| http://121.37.170.216:8080/dvd?name=测试 		|PUT 	|						
++-----------------------------------------------+-------+
+| http://121.37.170.216:8080/dvd/测试			|DELETE	|		
++-----------------------------------------------+-------+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	      $("#text").bind("click",function(){
+	          //alert("我的id为text，你点击时触发");
+			  $.ajax({
+				  url:"http://localhost:8080/demo/all",
+				  type:'get',
+				  data:'',
+				  dataType:'json',
+				  success:function (data) {
+					  console.log(data);
+					  
+					  var html="";
+					  for(var i=0;i<data.length;i++){
+							html+="<tr><td>"+data[i].id+"</td><td>"+data[i].name+"</td><td>"+data[i].email+"</td></tr>";				  
+					  }
+					  
+					  $('#t1').html(html);
+					  console.log(html);
+				  }
+			  });
+			  return false;
+	      });
+	      
+	      $("#text1").on("click",function(){
+	          //alert("hellworl");
+	          var name = $("#text3").val();
+	          var email = $("#text4").val();
+	          console.log(name);
+	          console.log(email);
+	          var form = 'name='+name+"&email="+email;
+			  $.ajax({
+				  url:"http://localhost:8080/demo/add",
+				  type:'get',
+				  data:form,
+				  success:function (data) {
+					  console.log(data);
+				  }
+			  });
+			  return false;		          
+	      });
+	      
+	      
+	});
+</script>
+
+https://element.eleme.cn/#/zh-CN/component/layout
